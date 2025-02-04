@@ -1,0 +1,30 @@
+     Wifi-Name                       Password                                                    
+
+    "POTATO"                   :     12345678                                       
+    "realme X7 Max"            :     00000000                                       
+    "realme 8 5G"              :     rizwin1234                                     
+    "realme 1"                 :     9995039424                                     
+    "iPhone"                   :     53535353                                       
+    "Sweet Home"               :     NoThankyou1                                    
+    "realme 11 Pro 5G"         :     12345678                                       
+    "SAHRDAYA W6 2"            :     sahrdaya@123                                   
+    "SAHRDAYA W6"              :     sahrdaya@123                                   
+    "SAHRDAYA 540AP-2"         :     sahrdaya123                                    
+    "SAHRDAYA 540AP-1"         :     sahrdaya123                                    
+    "Redmi Note 10"            :     12345678                                       
+    "Redmi 9"                  :     poda koppe                                     
+    "Range ella :("            :     lukeboy2008                                    
+    "POCO M4 Pro 5G"           :     88888888                                       
+    "Nothing Phone_1"          :     spiderman0123                                  
+    "MY HOUSE"                 :     1234567890                                     
+    "Kunju"                    :     NoThankyou01                                   
+    "Hotspot tharilla"         :     punk2023                                       
+    "Hand me ur cat"           :     yesmeow123                                     
+    "FTTH-C211"                :     12345678                                       
+    "FTTH-B002"                :     04812991644                                    
+    "FH_HOSTEL"                :     24@jesus#                                      
+    "CSA_CLASS-208"            :     123456798                                      
+    "BSNL_FibroNET_1175"       :     SeemaD69D                                      
+    "BOYS HOSTEL"              :     sahrdaya                                       
+    "AndroidAP_9429"           :     9995039424                                     
+    "007"                      :     00000000                                       
