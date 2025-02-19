@@ -41,6 +41,7 @@ A Flutter-based Meals App that helps users explore meal categories, view recipes
    flutter run
 
 ### **PROJECT STRUCTURE**
+```sh
    meals_app/
 │── lib/
 │   ├── screens/                # All Screens (Categories, Favorites, Filters, Meals)
