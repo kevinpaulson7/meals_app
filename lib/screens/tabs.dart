@@ -101,28 +101,54 @@ class _TabsScreenState extends State<TabsScreen> {
       activePageTitle = 'Your Favorites';
     }
 
-    return Scaffold(
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.background,
-        title: Text(activePageTitle),
+      backgroundColor: Theme.of(context).colorScheme.background,
+      title: Text(activePageTitle),
       ),
       drawer: MainDrawer(onSelectScreen: _setScreen),
-      body: activePage,
-      bottomNavigationBar: BottomNavigationBar(
-        onTap: _selectPage,
-        currentIndex: _selectedPageIndex,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.set_meal),
-            label: 'Categories',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.star),
-            label: 'Favorites',
-          ),
-        ],
+      body: TabBarView(
+      physics: const BouncingScrollPhysics(), // Enables smooth swiping
+      children: [
+        CategoriesScreen(
+          onToggleFavorite: _toggleMealFavoriteStatus,
+          availableMeals: availableMeals,
+        ),
+        MealsScreen(
+          meals: _favoriteMeals,
+          onToggleFavorite: _toggleMealFavoriteStatus,
+        ),
+      ],
+      controller: TabController(
+        length: 2,
+        vsync: Navigator.of(context),
+        initialIndex: _selectedPageIndex,
       ),
-    );
+    ),
+    bottomNavigationBar: BottomNavigationBar(
+      onTap: (index) {
+        setState(() {
+          _selectedPageIndex = index;
+        });
+        DefaultTabController.of(context)?.animateTo(index);
+      },
+      currentIndex: _selectedPageIndex,
+      items: const [
+        BottomNavigationBarItem(
+          icon: Icon(Icons.set_meal),
+          label: 'Categories',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.star),
+          label: 'Favorites',
+        ),
+      ],
+    ),
+  ),
+);
+
   }
 }
