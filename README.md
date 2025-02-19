@@ -5,22 +5,9 @@ A Flutter-based Meals App that helps users explore meal categories, view recipes
 ---
 
 ## 📷 Screenshots
-![Meals App Preview](assets/home.jpg)
-![Meals App Preview](assets/menu-drawer.jpg)
-![Meals App Preview](assets/meals.jpg)
-![Meals App Preview](assets/favorites.jpg)
-![Meals App Preview](assets/meal-details.jpg)
-![Meals App Preview](assets/meal-add-favorites.jpg)
+![Screen 1](assets/home.png)  ![Screen 2](assets/menu-drawer.png)  ![Screen 3](assets/meals.png)  
 
-
-<p align="center">
-  <img src="assets/home.png" alt="Screen 1" width="300" style="margin: 10px;">
-  <img src="assets/menu-drawer.png" alt="Screen 2" width="300" style="margin: 10px;">
-</p>
-<p align="center">
-  <img src="assets/meals.png" alt="Screen 3" width="300" style="margin: 10px;">
-  <img src="assets/favorites.png" alt="Screen 4" width="300" style="margin: 10px;">
-</p>
+![Screen 4](assets/favorites.png)  ![Screen 5](assets/meal-details.png)  ![Screen 6](assets/meal-add-favorites.png)
 
 <!-- Add your actual screenshot path -->
 
