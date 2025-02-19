@@ -31,3 +31,23 @@ A Flutter-based Meals App that helps users explore meal categories, view recipes
    ```sh
    git clone https://github.com/kevinpaulson7/meals_app.git
    cd meals_app
+
+2. **Add Dependencies**
+   ```sh
+   flutter pub get
+
+3. **Run the App**
+   ```sh
+   flutter run
+
+### **PROJECT STRUCTURE**
+   meals_app/
+│── lib/
+│   ├── screens/                # All Screens (Categories, Favorites, Filters, Meals)
+│   ├── models/                 # Data models (Meal, Filter)
+│   ├── data/                   # Dummy data
+│   ├── widgets/                # UI Components
+│   ├── main.dart               # App entry point
+│── assets/                     # App assets (images, icons)
+│── pubspec.yaml                # Dependencies & configurations
+│── README.md                   # Project documentation
