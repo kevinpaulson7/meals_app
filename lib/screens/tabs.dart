@@ -1,59 +1,116 @@
 import 'package:flutter/material.dart';
-import 'package:meals/models/meal.dart';
+import 'package:meals/data/dummy_data.dart';
 
+import 'package:meals/models/meal.dart';
 import 'package:meals/screens/categories.dart';
-import 'package:meals/screens/favorites.dart';
+import 'package:meals/screens/filters.dart';
+import 'package:meals/screens/main_drawer.dart';
+import 'package:meals/screens/meals.dart';
+
+const kInitialFilters = {
+  Filter.gluten: false,
+  Filter.lactose: false,
+  Filter.vegetarian: false,
+  Filter.vegan: false,
+};
 
 class TabsScreen extends StatefulWidget {
   const TabsScreen({super.key});
 
   @override
-  State<TabsScreen> createState() => _TabsScreenState();
+  State<TabsScreen> createState() {
+    return _TabsScreenState();
+  }
 }
 
 class _TabsScreenState extends State<TabsScreen> {
   int _selectedPageIndex = 0;
-  final PageController _pageController = PageController();
   final List<Meal> _favoriteMeals = [];
+  Map<Filter, bool> _selectedFilters = kInitialFilters;
+
+  void _showInfoMessage(String message) {
+    ScaffoldMessenger.of(context).clearSnackBars();
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text(message)));
+  }
 
   void _toggleMealFavoriteStatus(Meal meal) {
-    setState(() {
-      if (_favoriteMeals.contains(meal)) {
+    final isExisting = _favoriteMeals.contains(meal);
+
+    if (isExisting) {
+      setState(() {
         _favoriteMeals.remove(meal);
-      } else {
+        _showInfoMessage('Just removed from favorites..');
+      });
+    } else {
+      setState(() {
         _favoriteMeals.add(meal);
-      }
+        _showInfoMessage('Added to favorites');
+      });
+    }
+  }
+
+  void _selectPage(int index) {
+    setState(() {
+      _selectedPageIndex = index;
     });
+  }
+
+  void _setScreen(String identifier) async {
+    Navigator.of(context).pop();
+    if (identifier == 'Filters') {
+      final result = await Navigator.of(context).push<Map<Filter, bool>>(
+        MaterialPageRoute(builder: (ctx) => FilterScreen(currentFilter: _selectedFilters,)),
+      );
+
+      setState(() {
+        _selectedFilters = result ?? kInitialFilters;
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    final availableMeals = dummyMeals.where((meal) {
+      if (_selectedFilters[Filter.gluten]! && !meal.isGlutenFree) {
+        return false;
+      }
+      if (_selectedFilters[Filter.lactose]! && !meal.isLactoseFree) {
+        return false;
+      }
+      if (_selectedFilters[Filter.vegetarian]! && !meal.isVegetarian) {
+        return false;
+      }
+      if (_selectedFilters[Filter.vegan]! && !meal.isVegan) {
+        return false;
+      }
+      return true;
+    }).toList();
+
+    Widget activePage = CategoriesScreen(
+      onToggleFavorite: _toggleMealFavoriteStatus,
+      availableMeals: availableMeals,
+    );
+    var activePageTitle = 'Categories';
+
+    if (_selectedPageIndex == 1) {
+      activePage = MealsScreen(
+        meals: _favoriteMeals,
+        onToggleFavorite: _toggleMealFavoriteStatus,
+      );
+      activePageTitle = 'Your Favorites';
+    }
+
     return Scaffold(
-      body: PageView(
-        controller: _pageController,
-        onPageChanged: (index) {
-          setState(() {
-            _selectedPageIndex = index;
-          });
-        },
-        children: const [
-          CategoriesScreen(),
-          FavoritesScreen(
-            meals: [], // Pass your favorite meals list here
-          ),
-        ],
+      backgroundColor: Theme.of(context).colorScheme.background,
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.background,
+        title: Text(activePageTitle),
       ),
+      drawer: MainDrawer(onSelectScreen: _setScreen),
+      body: activePage,
       bottomNavigationBar: BottomNavigationBar(
-        onTap: (index) {
-          setState(() {
-            _selectedPageIndex = index;
-            _pageController.animateToPage(
-              index,
-              duration: const Duration(milliseconds: 300),
-              curve: Curves.easeInOut,
-            );
-          });
-        },
+        onTap: _selectPage,
         currentIndex: _selectedPageIndex,
         items: const [
           BottomNavigationBarItem(
@@ -67,11 +124,5 @@ class _TabsScreenState extends State<TabsScreen> {
         ],
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    _pageController.dispose();
-    super.dispose();
   }
 }
