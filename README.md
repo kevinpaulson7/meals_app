@@ -56,7 +56,8 @@ A Flutter-based Meals App that helps users explore meal categories, view recipes
    meals_app/
 │── lib/
 │   ├── screens/                # All Screens (Categories, Favorites, Filters, Meals)
-│   ├── models/                 # Data models (Meal, Filter)
+│   ├── models/                 # Data models (Meal, Filter) 
+|   |──providers/               # Providers for providing the meals and other filters.  
 │   ├── data/                   # Dummy data
 │   ├── widgets/                # UI Components
 │   ├── main.dart               # App entry point
