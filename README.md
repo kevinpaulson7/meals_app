@@ -11,7 +11,7 @@ A Flutter-based Meals App that helps users explore meal categories, view recipes
 
 ---
 ## Demo
-[Watch Demo Video](.Demo_app)
+[Watch Demo Video](Demo_app)
 
 ## 🚀 Features
 ✅ View meals categorized by type  
